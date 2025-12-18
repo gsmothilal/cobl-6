@@ -10,8 +10,9 @@ resource "random_id" "suffix" {
 # S3 Log Archive Bucket (COBL-006 Item 2)
 ########################################
 
+
 resource "aws_s3_bucket" "log_bucket" {
-  bucket = var.log_bucket_name
+  bucket = "${var.log_bucket_name}-${random_id.suffix.hex}"
 
   tags = {
     Purpose = "COBL-006-Logging"
